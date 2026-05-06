@@ -1,0 +1,19 @@
+/* ==UserStyle==
+@name         U+32C3C · 中日韩扩展J区字形
+@description  在所有网页中正确渲染 U+32C3C（中日韩统一表意文字扩展J区，Unicode 17.0）。需配合托管的 SubsetCJK.otf 字体文件使用。
+@version      1.0.3
+@author       U+32C3C Project
+@license      OFL-1.1
+@namespace    https://masculineta.netlify.app/
+@homepageURL  https://masculineta.netlify.app/
+==/UserStyle== */
+
+@font-face {
+  font-family: 'PatchedCJK';
+  src: url('https://masculineta.netlify.app/SubsetCJK.otf') format('opentype');
+}
+
+* {
+  font-family: 'PatchedCJK', -apple-system, BlinkMacSystemFont,
+               'Segoe UI', 'Noto Sans', sans-serif !important;
+}

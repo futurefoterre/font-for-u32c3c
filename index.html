@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>𲰼 U+32C3C · 字形发布页</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&display=swap');
+
+:root {
+  --ink:      #16120d;
+  --paper:    #f7f2e9;
+  --aged:     #ede4cf;
+  --deep:     #2a2018;
+  --cinnabar: #b83228;
+  --gold:     #a07820;
+  --gold-lt:  #c49a30;
+  --border:   rgba(160,120,32,0.25);
+  --shadow:   rgba(22,18,13,0.10);
+  --green:    #2a6e2a;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Serif SC', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Aged paper texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(160,120,32,0.06) 39px, rgba(160,120,32,0.06) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(160,120,32,0.03) 39px, rgba(160,120,32,0.03) 40px);
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative; z-index: 1;
+  padding: 64px 24px 48px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(160,120,32,0.04) 0%, transparent 100%);
+}
+
+.hero-char {
+  font-size: clamp(80px, 20vw, 160px);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -4px;
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
+}
+
+.hero-canvas-wrap {
+  display: inline-block;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
+}
+
+.hero-canvas-wrap canvas {
+  display: block;
+}
+
+.hero-label {
+  font-size: 10px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-title {
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero-sub {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.35s forwards;
+}
+
+.hero-desc {
+  font-size: 13px;
+  color: rgba(22,18,13,0.55);
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 12px auto 0;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Section layout ── */
+.section {
+  position: relative; z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.section-desc {
+  font-size: 12px;
+  color: rgba(22,18,13,0.55);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* ── Install cards ── */
+.install-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.install-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 18px;
+  box-shadow: 0 1px 6px var(--shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.install-card:hover {
+  box-shadow: 0 4px 16px var(--shadow);
+  transform: translateY(-1px);
+}
+
+.install-card-wide {
+  grid-column: 1 / -1;
+}
+
+.card-platform {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 11px;
+  color: rgba(22,18,13,0.55);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: opacity 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-outline  { background: transparent; color: var(--ink); border: 1px solid rgba(22,18,13,0.3); }
+.btn-red      { background: var(--cinnabar); color: white; }
+.btn-gold     { background: var(--gold); color: white; }
+
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── Steps ── */
+.steps { counter-reset: step; display: flex; flex-direction: column; gap: 12px; }
+
+.step {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: white; border: 1px solid var(--border);
+  border-radius: 3px; padding: 14px;
+  counter-increment: step;
+}
+
+.step::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  background: var(--ink); color: var(--paper);
+  border-radius: 50%;
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+
+.step-content { flex: 1; }
+.step-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.step-desc  { font-size: 11px; color: rgba(22,18,13,0.55); line-height: 1.6; }
+
+code {
+  font-family: monospace;
+  font-size: 10px;
+  background: rgba(0,0,0,0.06);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+/* ── Writer ── */
+.writer-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.writer-bar {
+  background: var(--aged);
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.writer-bar-label { font-size: 9px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
+.writer-status { font-size: 9px; letter-spacing: 2px; color: var(--cinnabar); }
+.writer-status.ok { color: var(--green); }
+
+canvas#display { display: block; width: 100%; }
+
+.writer-input-area { padding: 16px; }
+
+textarea {
+  width: 100%; min-height: 90px; padding: 12px;
+  background: var(--paper); border: 1px solid var(--border);
+  border-radius: 2px; font-family: PatchedCJK, 'Noto Serif SC', serif;
+  font-weight: 400;
+  font-size: 18px; line-height: 1.8; color: var(--ink);
+  resize: vertical; outline: none;
+  box-shadow: inset 0 1px 3px var(--shadow);
+  transition: border-color 0.2s; -webkit-appearance: none;
+}
+
+textarea:focus { border-color: var(--gold-lt); }
+textarea::placeholder { color: rgba(22,18,13,0.22); font-size: 13px; }
+
+.writer-controls {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 10px; flex-wrap: wrap;
+}
+
+.ctrl-label { font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+
+input[type=range] {
+  flex: 1; min-width: 80px; accent-color: var(--cinnabar);
+}
+
+.size-val { font-size: 11px; color: rgba(22,18,13,0.5); min-width: 30px; }
+
+/* ── Info grid ── */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.info-cell { background: white; padding: 10px 14px; }
+.info-k { font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 2px; }
+.info-v { font-size: 12px; color: var(--ink); }
+
+/* ── Notice ── */
+.notice {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(184,50,40,0.05);
+  border-left: 2px solid var(--cinnabar);
+  border-radius: 1px;
+  font-size: 11px;
+  color: rgba(22,18,13,0.6);
+  line-height: 1.7;
+}
+
+.notice-scroll {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.glyph-btn {
+  font-family: PatchedCJK, 'Noto Serif SC', serif;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+/* ── Footer ── */
+footer {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 11px;
+  color: rgba(22,18,13,0.35);
+  letter-spacing: 1px;
+  border-top: 1px solid var(--border);
+}
+
+.divider {
+  width: 40px; height: 1px;
+  background: var(--border);
+  margin: 0 auto 32px;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: var(--paper);
+  padding: 10px 20px; border-radius: 2px;
+  font-size: 12px; letter-spacing: 1px;
+  opacity: 0; transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none; z-index: 100; white-space: nowrap;
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-canvas-wrap">
+    <canvas id="heroChar" width="160" height="160"></canvas>
+  </div>
+  <div class="hero-label">中日韩统一表意文字 · 扩展J区 · Unicode 17.0</div>
+  <h1 class="hero-title">U+32C3C 字形发布页</h1>
+  <div class="hero-sub">全平台安装 · 一键配置</div>
+  <p class="hero-desc">
+    此字符收录于 Unicode 17.0 第三表意文字平面，目前尚未被大多数系统字体支持。
+    本页面提供字体文件、iOS 配置文件及浏览器样式的完整安装包。
+  </p>
+  <div style="margin-top:14px;font-size:10px;letter-spacing:3px;color:var(--gold);opacity:0.7">制作人：栗子饭</div>
+</div>
+
+<!-- ── WRITER SECTION ── -->
+<div class="section" id="writer">
+  <div class="section-label">字形书写器</div>
+  <div class="section-title">在线输入与预览</div>
+  <div class="section-desc">直接在此输入含有 U+32C3C 的文字，Canvas 渲染器绕过系统字体限制，确保正确显示。</div>
+
+  <div class="writer-wrap">
+    <div class="writer-bar">
+      <span class="writer-bar-label">渲染输出</span>
+      <span class="writer-status" id="writerStatus">字体加载中…</span>
+    </div>
+    <canvas id="display" height="140"></canvas>
+    <div class="writer-input-area">
+      <span style="position:absolute;opacity:0;pointer-events:none;font-family:PatchedCJK;font-size:1px">&#x32C3C;</span>
+      <textarea id="textInput" placeholder="在此输入文字——点击「插入字符」按钮可将 U+32C3C 插入光标处…"></textarea>
+      <div class="writer-controls">
+        <button class="btn btn-primary" onclick="insertGlyph()">插入字符 <span class="glyph-btn">&#x32C3C;</span></button>
+        <button class="btn btn-outline" onclick="clearText()">清除</button>
+        <button class="btn btn-red"     onclick="copyText()">复制文字</button>
+        <span class="ctrl-label" style="margin-left:auto">大小</span>
+        <input type="range" id="fontSize" min="16" max="120" value="48" oninput="updateSize(this.value)">
+        <span class="size-val" id="sizeLabel">48px</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-k">码位</div><div class="info-v">U+32C3C</div></div>
+    <div class="info-cell"><div class="info-k">UTF-16 代理对</div><div class="info-v">D88B DC3C</div></div>
+    <div class="info-cell"><div class="info-k">Unicode 区块</div><div class="info-v">中日韩扩展 J 区</div></div>
+    <div class="info-cell"><div class="info-k">字体状态</div><div class="info-v" id="fontStatusCell">检测中…</div></div>
+  </div>
+</div>
+
+<!-- ── INSTALL SECTION ── -->
+<div class="section">
+  <div class="section-label">安装指南</div>
+  <div class="section-title">选择你的平台</div>
+  <div class="section-desc">根据使用场景选择对应安装方式。macOS 支持完整使用，Windows 支持浏览器与特定应用，iOS 与 Android 目前仅限本页书写器。</div>
+
+  <div class="install-grid">
+
+    <!-- macOS -->
+    <div class="install-card">
+      <div class="card-platform">macOS</div>
+      <div class="card-title">桌面端字体</div>
+      <div class="card-desc">安装后此字符可在所有 macOS 原生应用中自动显示，包括备忘录、Pages、Sublime Text 等，无需手动设置字体。</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="Patched-NotoSansSC-Regular.otf" download>⬇ 下载字体</a>
+      </div>
+      <div class="notice" style="margin-top:12px;font-size:11px;line-height:1.9">
+        <strong>安装字体：</strong>双击 .otf 文件，点击「安装字体」即可。安装后所有应用自动支持，无需重启。<br><br>
+        <strong>输入方式：</strong>前往「系统设置 → 键盘 → 文字替换」→「+」。「替换为」栏粘贴 <span class="glyph-btn">&#x32C3C;</span>（点击书写器中的「复制文字」），「快捷键」填写拼音，例如 <code>ta</code>。之后在任意应用中输入快捷键并按空格即可插入此字符。
+      </div>
+    </div>
+
+    <!-- Browser -->
+    <div class="install-card">
+      <div class="card-platform">浏览器 · Chrome / Firefox / Arc / Edge</div>
+      <div class="card-title">Stylus 一键样式</div>
+      <div class="card-desc">安装后可在浏览器中所有网页正确显示此字符。适用于 macOS 与 Windows。</div>
+      <div class="btn-row" style="flex-direction:column;gap:10px">
+        <div>
+          <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px">第一步 · 先安装扩展</div>
+          <a class="btn btn-outline" href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank">① 安装 Stylus 扩展</a>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px">第二步 · 再安装样式</div>
+          <a class="btn btn-gold" href="u32c3c.user.css">② 一键安装 Stylus 样式</a>
+        </div>
+      </div>
+      <div class="notice" style="margin-top:12px;font-size:11px;line-height:1.7">
+        ⚠️ 注意：Stylus 样式会将所有网页字体替换为系统字体栈，可能影响部分网站的排版外观。建议仅在需要显示此字符时启用，在 Stylus 扩展图标中可按网站单独开关。
+      </div>
+    </div>
+
+    <!-- Windows — full width -->
+    <div class="install-card install-card-wide">
+      <div class="card-platform">Windows</div>
+      <div class="card-title">Windows 使用说明</div>
+      <div class="card-desc">Windows 字体回退机制与 macOS 不同，安装字体后不会自动在所有应用中显示此字符，需根据场景分别配置。</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="Patched-NotoSansSC-Fixed.ttf" download>⬇ 下载字体</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px">
+        <div class="notice" style="margin:0;font-size:11px;line-height:1.9">
+          <strong>安装字体</strong><br>
+          ① 下载字体文件<br>
+          ② 右键点击 .ttf 文件 → 选择「为所有用户安装」<br>
+          ③ 重启电脑后生效
+        </div>
+        <div class="notice" style="margin:0;font-size:11px;line-height:1.9">
+          <strong>输入方式</strong><br>
+          Windows 无系统级文字替换功能，目前无法像 macOS 一样通过拼音自然输入此字符。建议从本页书写器复制后粘贴使用。
+        </div>
+        <div class="notice" style="margin:0;font-size:11px;line-height:1.9">
+          <strong>浏览器（推荐）· Stylus</strong><br>
+          安装 Stylus 扩展及本页样式后，所有网页均可正确显示此字符。详见上方浏览器卡片的安装步骤。
+        </div>
+        <div class="notice" style="margin:0;font-size:11px;line-height:1.9">
+          <strong>Word / LibreOffice 等</strong><br>
+          粘贴字符后选中显示为方块的部分，手动将字体改为「Noto Sans CJK SC Patched」即可正确显示。
+        </div>
+      </div>
+      <div class="notice" style="margin-top:12px;font-size:11px;line-height:1.7">
+        ⚠️ 记事本、微信等无字体选择功能的原生应用暂时无法显示此字符，待 Microsoft 更新系统字体支持 Unicode 17.0 后将自动改善。
+      </div>
+    </div>
+
+    <!-- iOS -->
+    <div class="install-card">
+      <div class="card-platform">iOS · iPhone / iPad</div>
+      <div class="card-title">iPhone 字体配置文件</div>
+      <div class="card-desc">提前安装，为未来做准备。当 iOS 系统更新支持 Unicode 17.0 第三平面字符时，此字符将在所有原生应用中自动正确显示。需要 iOS 14 或更高版本。</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="Patched-NotoSansSC-Regular.mobileconfig">⬇ 安装配置文件</a>
+      </div>
+      <div class="notice notice-scroll" style="margin-top:12px;font-size:11px;line-height:1.9">
+        <strong>方法一 · 直接在 iPhone 上点击下载按钮：</strong><br>
+        ① 在 iPhone Safari 中打开本页面<br>
+        ② 点击「安装配置文件」按钮，弹出提示后点击「允许」<br>
+        ③ 打开「设置」→ 顶部「已下载描述文件」→ 点击「安装」→ 输入锁屏密码 →「完成」<br><br>
+        <strong>方法二 · 从 Mac AirDrop：</strong><br>
+        ① 在 Mac 上右键 <code>.mobileconfig</code> 文件 → 「共享 → AirDrop」→ 选择 iPhone<br>
+        ② 前往「设置」顶部「已下载描述文件」完成安装<br><br>
+        ⚠️ 受限于 iOS 系统对 Unicode 17.0 第三平面字符的支持尚未完善，此配置文件目前在原生应用中实际效果有限。建议提前安装以便系统更新后自动生效。
+      </div>
+    </div>
+
+    <!-- Android -->
+    <div class="install-card">
+      <div class="card-platform">Android</div>
+      <div class="card-title">Android 字体文件</div>
+      <div class="card-desc">目前原生 Android 应用无法正确显示此字符，建议使用本页书写器进行输入与预览。字体文件可供有需要的用户自行探索安装方式。</div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="Patched-NotoSansSC-Regular.otf" download>⬇ 下载字体</a>
+      </div>
+      <div class="notice" style="margin-top:12px;font-size:11px;line-height:1.7">
+        ⚠️ 原生 Android 系统（如 Pixel）无内置字体安装器，原生应用中此字符暂时显示为方块。待 Google 更新系统字体支持 Unicode 17.0 后将自动改善。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SETUP GUIDE ── -->
+<div class="section">
+  <div class="section-label">输入方式</div>
+  <div class="section-title">如何在各平台输入此字符</div>
+  <div class="section-desc">由于 U+32C3C 位于 Unicode 17.0 第三表意文字平面，各平台的输入与显示支持程度不同。</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-content">
+        <div class="step-title">macOS · 文字替换快捷输入（推荐）</div>
+        <div class="step-desc">前往「系统设置 → 键盘 → 文字替换」→「+」。「替换为」栏粘贴 <span class="glyph-btn">&#x32C3C;</span>（点击书写器中的「复制文字」），「快捷键」栏填写拼音，例如 <code>ta</code>。之后在任意 macOS 应用中输入该快捷键并按空格，即可插入此字符。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <div class="step-title">浏览器（需安装 Stylus）</div>
+        <div class="step-desc">安装 Stylus 样式后，所有网页均可正确渲染此字符。适用于 macOS 与 Windows 浏览器。配合文字替换快捷键（macOS），可在网页输入框中直接输入并显示。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <div class="step-title">iOS · 仅限本页书写器</div>
+        <div class="step-desc">iOS 系统 Core Text 目前尚不支持 Unicode 17.0 第三平面字符，在原生应用（如微信、备忘录、短信）中无法输入或正常显示此字符。待 iOS 后续系统版本更新后将自动支持。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <div class="step-title">Android · 仅限本页书写器</div>
+        <div class="step-desc">与 iOS 相同，原生 Android 系统目前无法在原生应用中正确显示此字符。请使用本页书写器输入与预览。待 Google 更新系统字体支持 Unicode 17.0 后将自动改善。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="divider"></div>
+  U+32C3C · 中日韩统一表意文字扩展 J 区 · Unicode 17.0 · 字体基于 Noto Sans CJK（OFL 协议）
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js"></script>
+<script>
+const CHAR      = '\uD88B\uDC3C';
+const FONT_FILE = 'SubsetCJK.otf';
+let fontSize    = 48;
+let currentText = '';
+let otFont      = null;
+
+/* ── Fetch font once as binary buffer, share between opentype.js and FontFace ── */
+fetch(FONT_FILE)
+  .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.arrayBuffer(); })
+  .then(buffer => {
+    otFont = opentype.parse(buffer);           // opentype.js parses binary — gives glyph paths
+    const face = new FontFace('PatchedCJK', buffer);
+    return face.load();
+  })
+  .then(face => {
+    document.fonts.add(face);
+    // Wait for ALL fonts (including Noto Serif SC) before rendering
+    return document.fonts.ready;
+  })
+  .then(() => {
+    setStatus('字体已加载 ✓', true);
+    renderHero();
+    render();
+  })
+  .catch(err => {
+    console.error('Font load error:', err);
+    setStatus('未找到字体文件', false);
+    renderHero();
+    render();
+  });
+
+function setStatus(msg, ok) {
+  ['writerStatus','fontStatusCell'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.className = ok
+      ? (id === 'writerStatus' ? 'writer-status ok' : '')
+      : (id === 'writerStatus' ? 'writer-status' : '');
+    if (!ok && id === 'fontStatusCell') el.style.color = 'var(--cinnabar)';
+    if ( ok && id === 'fontStatusCell') el.style.color = 'var(--green)';
+  });
+}
+
+/* ── Draw U+32C3C as raw vector path via opentype.js path.draw(ctx) ── */
+function drawGlyph(ctx, x, baselineY, size) {
+  if (!otFont) return 0;
+  const glyph = otFont.charToGlyph(CHAR);
+  if (!glyph || glyph.index === 0) return 0;
+  const scale = size / otFont.unitsPerEm;
+  const path  = glyph.getPath(x, baselineY, size);
+  path.fill   = '#16120d';
+  path.stroke = null;
+  path.draw(ctx);
+  return (glyph.advanceWidth || otFont.unitsPerEm) * scale;
+}
+
+/* ── Hero canvas ── */
+function renderHero() {
+  const c   = document.getElementById('heroChar');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width   = 160 * dpr;
+  c.height  = 160 * dpr;
+  c.style.width  = '160px';
+  c.style.height = '160px';
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, 160, 160);
+
+  if (otFont) {
+    const size      = 120;
+    const baselineY = (otFont.ascender / otFont.unitsPerEm) * size + 10;
+    drawGlyph(ctx, 20, baselineY, size);
+  } else {
+    // Placeholder while loading
+    ctx.fillStyle    = 'rgba(22,18,13,0.08)';
+    ctx.fillRect(20, 20, 120, 120);
+    ctx.fillStyle    = 'rgba(22,18,13,0.3)';
+    ctx.font         = '11px serif';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign    = 'center';
+    ctx.fillText('加载中…', 80, 80);
+  }
+}
+
+/* ── Writer canvas ── */
+const canvas = document.getElementById('display');
+const ctx    = canvas.getContext('2d');
+
+function render() {
+  const dpr   = window.devicePixelRatio || 1;
+  const w     = canvas.parentElement.clientWidth;
+  const pad   = 22;
+  const lineH = fontSize * 1.65;
+  const text  = currentText || CHAR;
+  const maxW  = w - pad * 2;
+
+  ctx.font = `${fontSize}px PatchedCJK, "Noto Serif SC", serif`;
+  const lines  = wrapText(ctx, text, maxW);
+  const totalH = Math.max(140, lines.length * lineH + pad * 2);
+
+  canvas.width        = w * dpr;
+  canvas.height       = totalH * dpr;
+  canvas.style.height = totalH + 'px';
+  ctx.scale(dpr, dpr);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, w, totalH);
+
+  ctx.strokeStyle = 'rgba(160,120,32,0.06)';
+  ctx.lineWidth   = 1;
+  for (let y = lineH; y < totalH; y += lineH) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+  }
+
+  ctx.fillStyle    = '#16120d';
+  ctx.font         = `${fontSize}px PatchedCJK, "Noto Serif SC", serif`;
+  ctx.textBaseline = 'top';
+  lines.forEach((line, i) => drawLine(ctx, line, pad, pad + i * lineH, fontSize));
+}
+
+/* ── Mixed renderer: system font for regular text, vector path for U+32C3C ── */
+function drawLine(ctx, text, x, y, size) {
+  // Measure the real baseline position from Canvas using Noto Serif SC actual metrics
+  // This ensures the glyph and surrounding text share the same baseline
+  ctx.font         = `${size}px PatchedCJK, "Noto Serif SC", serif`;
+  ctx.textBaseline = 'alphabetic';
+  const metrics    = ctx.measureText('中');
+  // fontBoundingBoxAscent (from alphabetic baseline) = ascender height above baseline
+  // With textBaseline='top', y is the em top, so baseline = y + ascenderHeight
+  const ascH       = (metrics.fontBoundingBoxAscent > 0)
+    ? metrics.fontBoundingBoxAscent
+    : size * 0.80;
+  const baselineY  = y + ascH;
+
+  const parts = text.split(CHAR);
+  for (let i = 0; i < parts.length; i++) {
+    if (parts[i]) {
+      ctx.fillStyle    = '#16120d';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillText(parts[i], x, baselineY);
+      x += ctx.measureText(parts[i]).width;
+    }
+    if (i < parts.length - 1) {
+      x += drawGlyph(ctx, x, baselineY, size);
+    }
+  }
+}
+
+/* ── Word wrap ── */
+function wrapText(ctx, text, maxW) {
+  const emW   = otFont ? fontSize : fontSize;
+  const chars = [...text];
+  const lines = [];
+  let cur = '';
+  for (const ch of chars) {
+    const w = ch === CHAR
+      ? ctx.measureText(cur).width + emW
+      : ctx.measureText(cur + ch).width;
+    if (w > maxW && cur.length > 0) { lines.push(cur); cur = ch; }
+    else { cur += ch; }
+  }
+  if (cur) lines.push(cur);
+  return lines.length ? lines : [''];
+}
+
+const ta = document.getElementById('textInput');
+ta.addEventListener('input', () => { currentText = ta.value; render(); });
+
+function insertGlyph() {
+  const pos = ta.selectionStart;
+  ta.value  = ta.value.slice(0, pos) + CHAR + ta.value.slice(pos);
+  ta.selectionStart = ta.selectionEnd = pos + CHAR.length;
+  ta.focus();
+  currentText = ta.value;
+  render();
+}
+
+function clearText() { ta.value = ''; currentText = ''; render(); }
+
+function copyText() {
+  const t = ta.value || CHAR;
+  if (navigator.clipboard) navigator.clipboard.writeText(t);
+  else { ta.select(); document.execCommand('copy'); }
+  showToast('已复制到剪贴板 ✓');
+}
+
+function updateSize(v) {
+  fontSize = parseInt(v);
+  document.getElementById('sizeLabel').textContent = v + 'px';
+  render();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+window.addEventListener('resize', () => { render(); renderHero(); });
+renderHero();
+render();
+</script>
+</body>
+</html>
