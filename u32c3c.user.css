@@ -4,13 +4,13 @@
 @version      1.0.3
 @author       U+32C3C Project
 @license      OFL-1.1
-@namespace    https://masculineta.netlify.app/
-@homepageURL  https://masculineta.netlify.app/
+@namespace    https://taforhim.netlify.app/
+@homepageURL  https://taforhim.netlify.app/
 ==/UserStyle== */
 
 @font-face {
   font-family: 'PatchedCJK';
-  src: url('https://masculineta.netlify.app/SubsetCJK.otf') format('opentype');
+  src: url('https://taforhim.netlify.app/SubsetCJK.otf') format('opentype');
 }
 
 * {
