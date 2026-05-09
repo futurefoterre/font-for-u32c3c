@@ -1,3 +1,12 @@
+## 5/8/2026 更新
+5/8/2026 Update
+
+新增字符“𢗼” U+225FC
+
+Added unicode character U+225FC
+
+---
+
 # 𲰼 U+32C3C · 中日韩统一表意文字扩展J区
 # CJK Unified Ideograph Extension J · Unicode 17.0
 
