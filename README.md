@@ -5,6 +5,10 @@
 
 Added unicode character U+225FC
 
+可从 [Releases](../../releases/latest) v1.0.1 下载
+
+Please download from Realease v1.0.1
+
 ---
 
 # 𲰼 U+32C3C · 中日韩统一表意文字扩展J区
