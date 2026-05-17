@@ -9,5 +9,19 @@
   Access-Control-Allow-Origin: *
   Content-Type: font/otf
 
+/Patched-NotoSansSC-Fixed.ttf
+  Access-Control-Allow-Origin: *
+  Content-Type: font/ttf
+
+/Patched-NotoSansSC-Regular.mobileconfig
+  Content-Type: application/x-apple-aspen-config
+
+/U32C3C-Font-Module.zip
+  Content-Type: application/zip
+
+/Patched-NotoSansSC-Regular.otf
+  Access-Control-Allow-Origin: *
+  Content-Type: font/otf
+
 /Patched-NotoSansSC-Regular.mobileconfig
   Content-Type: application/x-apple-aspen-config
